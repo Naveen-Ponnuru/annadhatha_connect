@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:json_annotation/json_annotation.dart';
+// import 'package:json_annotation/json_annotation.dart';
 
-part 'user_model.g.dart';
+// part 'user_model.g.dart';
 
-@JsonSerializable()
+// @JsonSerializable()
 class UserModel {
   final String id;
   final String phoneNumber;
@@ -71,8 +71,77 @@ class UserModel {
     this.additionalInfo,
   });
 
-  factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
-  Map<String, dynamic> toJson() => _$UserModelToJson(this);
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
+      id: json['id'] as String,
+      phoneNumber: json['phoneNumber'] as String,
+      email: json['email'] as String?,
+      role: json['role'] as String,
+      firstName: json['firstName'] as String?,
+      lastName: json['lastName'] as String?,
+      profileImageUrl: json['profileImageUrl'] as String?,
+      address: json['address'] as String?,
+      city: json['city'] as String?,
+      state: json['state'] as String?,
+      pincode: json['pincode'] as String?,
+      aadhaarNumber: json['aadhaarNumber'] as String?,
+      panNumber: json['panNumber'] as String?,
+      aadhaarImageUrl: json['aadhaarImageUrl'] as String?,
+      panImageUrl: json['panImageUrl'] as String?,
+      kycStatus: json['kycStatus'] as String,
+      kycRejectionReason: json['kycRejectionReason'] as String?,
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      updatedAt: DateTime.parse(json['updatedAt'] as String),
+      isActive: json['isActive'] as bool,
+      preferences: json['preferences'] as Map<String, dynamic>?,
+      fcmToken: json['fcmToken'] as String?,
+      language: json['language'] as String?,
+      timezone: json['timezone'] as String?,
+      rating: (json['rating'] as num?)?.toDouble(),
+      totalOrders: json['totalOrders'] as int?,
+      totalTrades: json['totalTrades'] as int?,
+      totalRevenue: (json['totalRevenue'] as num?)?.toDouble(),
+      isVerified: json['isVerified'] as bool,
+      verificationNotes: json['verificationNotes'] as String?,
+      additionalInfo: json['additionalInfo'] as Map<String, dynamic>?,
+    );
+  }
+  
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'phoneNumber': phoneNumber,
+      'email': email,
+      'role': role,
+      'firstName': firstName,
+      'lastName': lastName,
+      'profileImageUrl': profileImageUrl,
+      'address': address,
+      'city': city,
+      'state': state,
+      'pincode': pincode,
+      'aadhaarNumber': aadhaarNumber,
+      'panNumber': panNumber,
+      'aadhaarImageUrl': aadhaarImageUrl,
+      'panImageUrl': panImageUrl,
+      'kycStatus': kycStatus,
+      'kycRejectionReason': kycRejectionReason,
+      'createdAt': createdAt.toIso8601String(),
+      'updatedAt': updatedAt.toIso8601String(),
+      'isActive': isActive,
+      'preferences': preferences,
+      'fcmToken': fcmToken,
+      'language': language,
+      'timezone': timezone,
+      'rating': rating,
+      'totalOrders': totalOrders,
+      'totalTrades': totalTrades,
+      'totalRevenue': totalRevenue,
+      'isVerified': isVerified,
+      'verificationNotes': verificationNotes,
+      'additionalInfo': additionalInfo,
+    };
+  }
 
   factory UserModel.fromFirestore(DocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>;

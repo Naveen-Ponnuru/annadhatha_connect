@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+// import 'package:hive_flutter/hive_flutter.dart';
 
 import 'firebase_options.dart';
 import 'core/theme/app_theme.dart';
@@ -22,7 +22,7 @@ void main() async {
   );
   
   // Initialize Hive
-  await Hive.initFlutter();
+  // await Hive.initFlutter();
   
   runApp(
     const ProviderScope(

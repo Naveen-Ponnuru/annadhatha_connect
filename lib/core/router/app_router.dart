@@ -25,39 +25,39 @@ import '../../features/shared/screens/notifications_screen.dart';
 final appRouterProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     initialLocation: '/splash',
-    redirect: (context, state) {
-      final authState = ref.read(authProvider);
-      final isAuthenticated = authState.isAuthenticated;
-      final user = authState.user;
-      
-      // If not authenticated, redirect to login
-      if (!isAuthenticated && state.location != '/login' && state.location != '/splash') {
-        return '/login';
+  redirect: (context, state) {
+    final authState = ref.read(authProvider);
+    final isAuthenticated = authState.isAuthenticated;
+    final user = authState.user;
+    
+    // If not authenticated, redirect to login
+    if (!isAuthenticated && state.uri.path != '/login' && state.uri.path != '/splash') {
+      return '/login';
+    }
+    
+    // If authenticated but no role selected, redirect to role selection
+    if (isAuthenticated && user != null && state.uri.path != '/role-selection') {
+      if (user.role.isEmpty) {
+        return '/role-selection';
       }
-      
-      // If authenticated but no role selected, redirect to role selection
-      if (isAuthenticated && user != null && state.location != '/role-selection') {
-        if (user.role.isEmpty) {
+    }
+    
+    // If authenticated with role, redirect to appropriate dashboard
+    if (isAuthenticated && user != null && state.uri.path == '/login') {
+      switch (user.role) {
+        case 'farmer':
+          return '/farmer/dashboard';
+        case 'retailer':
+          return '/retailer/dashboard';
+        case 'hub':
+          return '/hub/dashboard';
+        default:
           return '/role-selection';
-        }
       }
-      
-      // If authenticated with role, redirect to appropriate dashboard
-      if (isAuthenticated && user != null && state.location == '/login') {
-        switch (user.role) {
-          case 'farmer':
-            return '/farmer/dashboard';
-          case 'retailer':
-            return '/retailer/dashboard';
-          case 'hub':
-            return '/hub/dashboard';
-          default:
-            return '/role-selection';
-        }
-      }
-      
-      return null;
-    },
+    }
+    
+    return null;
+  },
     routes: [
       // Splash Screen
       GoRoute(

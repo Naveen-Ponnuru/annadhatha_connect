@@ -158,7 +158,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
     try {
       state = state.copyWith(isLoading: true, error: null);
       
-      final user = await _authService.verifyOtp(otp, state.verificationId);
+      final user = await _authService.verifyOtp(otp, state.verificationId ?? '');
       
       if (user != null) {
         await _loadUserData(user.uid);
