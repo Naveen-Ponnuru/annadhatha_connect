@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login • Green UI</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="/__/firebase/12.4.0/firebase-app-compat.js"></script>
+    <script defer src="/__/firebase/12.4.0/firebase-auth-compat.js"></script>
+    <script defer src="/__/firebase/12.4.0/firebase-firestore-compat.js"></script>
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+    <script defer src="./app.js"></script>
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="container nav-inner">
+        <a class="brand" href="./index.html"><span class="brand-icon"></span> Green UI</a>
+        <nav class="nav-links">
+          <a class="nav-link" href="./index.html">Home</a>
+          <a class="nav-link" href="./about.html">About</a>
+          <a class="nav-link" href="./contact.html">Contact</a>
+          <a class="nav-cta" href="./login.html">Login</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="login-page">
+      <section>
+        <div class="container" style="max-width: 760px;">
+          <h2>Access Annadhatha-Connect</h2>
+          <p class="muted">Choose role, then sign in or sign up. Phone verification supported.</p>
+
+          <div class="spacer"></div>
+
+          <div class="card" style="padding: 1.25rem;">
+            <div style="display:flex; gap:.5rem; margin-bottom: .75rem;">
+              <button type="button" class="btn-ghost active" data-role="farmer">Farmer Login</button>
+              <button type="button" class="btn-ghost" data-role="retailer">Retailer Login</button>
+            </div>
+            <div id="auth-msg" class="muted" style="margin-bottom:.5rem;"></div>
+
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;">
+              <div>
+                <h3 style="margin:0 0 .5rem; color: var(--color-dark);">Sign In (<span id="roleLabel">Farmer</span>)</h3>
+                <form id="signin-form" class="form-grid">
+                  <div>
+                    <label class="label" for="email-in">Email</label>
+                    <input class="input" id="email-in" name="email" type="email" placeholder="Email" />
+                  </div>
+                  <div>
+                    <label class="label" for="pass-in">Password</label>
+                    <input class="input" id="pass-in" name="password" type="password" placeholder="Password" />
+                  </div>
+                  <div>
+                    <button class="btn-primary" type="submit">Login</button>
+                  </div>
+                </form>
+              </div>
+
+              <div>
+                <h3 style="margin:0 0 .5rem; color: var(--color-dark);">Sign Up (<span id="roleLabel">Farmer</span>)</h3>
+                <form id="signup-form" class="form-grid">
+                  <div>
+                    <label class="label" for="signup-name">Full Name</label>
+                    <input class="input" id="signup-name" name="name" placeholder="Your Name" />
+                  </div>
+                  <div>
+                    <label class="label" for="signup-email">Email</label>
+                    <input class="input" id="signup-email" name="email" type="email" placeholder="Your Email" />
+                  </div>
+                  <div>
+                    <label class="label" for="signup-phone">Phone</label>
+                    <div style="display:flex; gap:.5rem;">
+                      <input class="input" id="signup-phone" name="phone" placeholder="e.g. +91XXXXXXXXXX" />
+                      <button class="btn-ghost" id="send-otp" type="button">Verify Phone</button>
+                    </div>
+                    <div id="recaptcha-container"></div>
+                    <div style="display:flex; gap:.5rem; margin-top:.5rem;">
+                      <input class="input" id="otp" placeholder="Enter OTP" />
+                      <button class="btn-ghost" id="verify-otp" type="button">Confirm</button>
+                    </div>
+                  </div>
+                  <div>
+                    <label class="label" for="signup-password">Password</label>
+                    <input class="input" id="signup-password" name="password" type="password" placeholder="Password" />
+                  </div>
+                  <div>
+                    <button class="btn-primary" type="submit">Create Account</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container center">© <span id="y"></span> Green UI.</div>
+    </footer>
+    <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  </body>
+  </html>
+
+

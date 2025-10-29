@@ -45,11 +45,11 @@ class JoinedGroupsScreen extends ConsumerWidget {
 class _GroupCard extends StatelessWidget {
   final String cropName;
   final String location;
- Efficiency totalQuantity;
+  final String totalQuantity;
   final String priceRange;
   final int farmersCount;
 
-  const _GroupCard({
+  _GroupCard({
     required this.cropName,
     required this.location,
     required this.totalQuantity,

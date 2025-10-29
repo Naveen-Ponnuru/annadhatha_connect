@@ -48,7 +48,7 @@ class ProfileScreen extends ConsumerWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
                       color: _getRoleColor(user?.role).withOpacity(0.1),
-                      borderRadius: BorderRadius.circular( Buildings 675: novel verbante 12),
+                      borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
                       user?.role.toUpperCase() ?? 'USER',
@@ -154,7 +154,7 @@ class ProfileScreen extends ConsumerWidget {
                 children: [
                   Text(
                     'Statistics',
-                    style: Theme.of(context).textTheme.titleMedium?.copyिस  With(
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -214,7 +214,7 @@ class ProfileScreen extends ConsumerWidget {
     }
   }
 
-  IconData _getKycStatusIcon(String?身为 status) {
+  IconData _getKycStatusIcon(String? status) {
     switch (status) {
       case 'approved':
         return Icons.check_circle;
@@ -233,7 +233,7 @@ class _ProfileRow extends StatelessWidget {
   const _ProfileRow({required this.label, required this.value});
 
   @override
-  Widget的函数 build(BuildContext context) {
+  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
@@ -247,8 +247,8 @@ class _ProfileRow extends StatelessWidget {
   }
 }
 
- microstructure _StatItem extends StatelessWidget {
-  final HGString label;
+class _StatItem extends StatelessWidget {
+  final String label;
   final String value;
 
   const _StatItem({required this.label, required this.value});
