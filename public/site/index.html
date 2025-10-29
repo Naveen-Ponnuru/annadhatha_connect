@@ -34,7 +34,7 @@
               <a class="btn-ghost" href="./about.html">Learn More</a>
             </div>
           </div>
-          <div class="card artboard">
+          <div class="card artboard" id="artboard">
             <div class="float-img i1">
               <img src="https://images.unsplash.com/photo-1524593190473-1d1666c2fd43?q=80&w=1200&auto=format&fit=crop" alt="Leaf 1" />
             </div>
@@ -43,6 +43,12 @@
             </div>
             <div class="float-img i3">
               <img src="https://images.unsplash.com/photo-1482192505345-5655af888cc4?q=80&w=1200&auto=format&fit=crop" alt="Leaf 3" />
+            </div>
+            <div class="float-img i4">
+              <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1200&auto=format&fit=crop" alt="Field" />
+            </div>
+            <div class="float-img i5">
+              <img src="https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?q=80&w=1200&auto=format&fit=crop" alt="Crop" />
             </div>
           </div>
         </div>
@@ -75,6 +81,23 @@
     </footer>
     <script>
       document.getElementById('y').textContent = new Date().getFullYear();
+      // subtle mouse parallax on the artboard
+      const board = document.getElementById('artboard');
+      const movers = board ? board.querySelectorAll('.float-img') : [];
+      if (board) {
+        board.addEventListener('mousemove', (e) => {
+          const r = board.getBoundingClientRect();
+          const cx = (e.clientX - r.left) / r.width - 0.5;
+          const cy = (e.clientY - r.top) / r.height - 0.5;
+          movers.forEach((el, i) => {
+            const depth = (i + 1) * 4; // vary depth
+            el.style.transform = `translate(${cx * depth}px, ${cy * depth}px)`;
+          });
+        });
+        board.addEventListener('mouseleave', () => {
+          movers.forEach((el) => { el.style.transform = ''; });
+        });
+      }
     </script>
   </body>
   </html>
